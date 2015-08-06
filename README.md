@@ -1,5 +1,5 @@
 # Yelp Search API | Java
-A java wrapper for [Yelp's REST API]https://www.yelp.com/developers/documentation/v2/search_api).
+A java wrapper for [Yelp's REST API](https://www.yelp.com/developers/documentation/v2/search_api).
 
 
 ##Usage
