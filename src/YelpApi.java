@@ -110,18 +110,19 @@ public class YelpApi {
             try {
                 business.setPhoneNumber(curObj.getString("display_phone"));
             } catch (Exception e) {
+                System.err.println("Business has no phone number");
             }
 
             try {
                 business.setDistance(curObj.getDouble("distance"));
             } catch (Exception e) {
-                //
+                System.err.println("Business has no distance (coordinates not provided)");
             }
 
             try {
                 business.setSnippetText(curObj.getString("snippet_text"));
             } catch (Exception e) {
-
+                System.err.println("Business has no snippet text.");
             }
 
             businesses.add(business);
