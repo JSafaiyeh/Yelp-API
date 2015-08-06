@@ -54,16 +54,14 @@ public class YelpApi {
 
     public ArrayList<Business> searchCoordinates(double latitude, double longitude) {
         OAuthRequest request = createOAuthRequest(SEARCH_PATH);
-        request.addQuerystringParameter("latitude", String.valueOf(latitude));
-        request.addQuerystringParameter("longitude", String.valueOf(longitude));
+        request.addQuerystringParameter("ll", String.valueOf(latitude) + "," + String.valueOf(longitude));
         String json = sendRequestAndGetResponse(request);
         return queryApi(json);
     }
 
     public ArrayList<Business> searchCoordinates(double latitude, double longitude, HashMap<String, String> searchParameters) {
         OAuthRequest request = createOAuthRequest(SEARCH_PATH);
-        request.addQuerystringParameter("latitude", String.valueOf(latitude));
-        request.addQuerystringParameter("longitude", String.valueOf(longitude));
+        request.addQuerystringParameter("ll", String.valueOf(latitude) + "," + String.valueOf(longitude));
         for (Map.Entry<String, String> entry : searchParameters.entrySet()) {
             request.addQuerystringParameter(entry.getKey(), entry.getValue());
         }
@@ -110,19 +108,19 @@ public class YelpApi {
             try {
                 business.setPhoneNumber(curObj.getString("display_phone"));
             } catch (Exception e) {
-                System.err.println("Business has no phone number");
+                System.err.println( name + " has no phone number");
             }
 
             try {
                 business.setDistance(curObj.getDouble("distance"));
             } catch (Exception e) {
-                System.err.println("Business has no distance (coordinates not provided)");
+                System.err.println(name + " has no distance (coordinates not provided)");
             }
 
             try {
                 business.setSnippetText(curObj.getString("snippet_text"));
             } catch (Exception e) {
-                System.err.println("Business has no snippet text.");
+                System.err.println(name + " has no snippet text.");
             }
 
             businesses.add(business);
